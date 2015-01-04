@@ -59,7 +59,7 @@
                 </div>
                 
                 <div class="sidebar-logo">
-                    <img src="images/drugs/logo_odc.png" height="52" alt="img">
+                    <img src="images/drugs/logo_odc.png" height="80" alt="img">
                 </div>
                 
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>                
@@ -175,7 +175,7 @@
                     MostrarDivCargando();
                     var usuario = $('#contactNameField').val();
                     var pass = $('#contactEmailField').val();					
-                    var url = "http://localhost:33449/Service1.svc/getUsuario?login="+usuario+"&password="+pass;
+                    var url = "http://localhost:8081/Service1.svc/getUsuario?login="+usuario+"&password="+pass;
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -192,7 +192,10 @@
                                         alert(field[x].Mensaje);
                                     }
                                     else{
-                                        localStorage.setItem("idUsuario", field[x].Codusua);                                       
+                                        OcultarDivCargando();
+										localStorage.setItem("idUsuario", field[x].Codusua); 
+										alert(field[x].Mensaje);
+										location.href = "index.html";
                                     }
                                 });
 
