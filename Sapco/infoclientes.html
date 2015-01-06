@@ -35,6 +35,7 @@
     <script type="text/javascript" src="scripts/framework.launcher.js"></script>
     <script type="text/javascript" src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
     <script type="text/javascript" src="scripts/bd.js"></script>
+
 </head>
 <body>
     <div id="preloader">
@@ -45,29 +46,30 @@
         </div>
     </div>
     <div class="all-elements">
-         <div id="sidebar" class="page-sidebar">
+        <div id="sidebar" class="page-sidebar">
             <div class="page-sidebar-scroll">
                 <div class="sidebar-shortcuts">
+				    <a href="#" class="shortcut-closedsession" title="Cerrar Sesión" onclick="closedSession();"></a>
                     <a href="#" class="shortcut-close"></a>
                 </div>
                 
                 <div class="sidebar-search">
                     <div class="search-box">
-                        <input type="text" class="search-field" name="search" onfocus="if(this.value == 'Looking for something?') { this.value = ''; }" value="Looking for something?">
-                        <a href="#" class="search-close"></a>
+                        <input type="text" class="search-field" name="search" onfocus="if(this.value == 'Looking for something?') { this.value = ''; }" value="Looking for something?"                        
+						<a href="#" class="search-close"></a>
                     </div>
                 </div>
                 
                 <div class="sidebar-logo">
-                    <img src="images/drugs/logo_odc.png" height="80" alt="img">
+                    <img src="images/drugs/logo_odc.png" height="52" alt="img">					
                 </div>
                 
-                <div class="sidebar-breadcrumb">NAVEGACIÓN</div>                
+                <div class="sidebar-breadcrumb">NAVEGACIÓN</div>
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="index.html" class="nav-item home-icon">Inicio<em class="selected-item"></em></a>
+                    <a href="infoclientes.html" class="nav-item home-locales">Información Cliente<em class="unselected-item"></em></a>
                 </div>
-				<div class="sidebar-decoration"></div>                               
+                <div class="sidebar-decoration"></div>
                 <div class="sidebar-breadcrumb">
                 </div>
             </div>         
@@ -77,68 +79,101 @@
             <div class="page-header">
                 <a href="#" class="deploy-sidebar"></a>
                 <img class="header-logo" src="images/drugs/odc-texto.png" width="71" alt="img">
-            </div>
-            <div class="page-header-clear">
-            </div>
+            </div>            
             <div class="content">
                 <div class="decoration">
                 </div>
+				<div class="page-header-clear">
+				</div>
 				<div class="container no-bottom" style="text-align: center;">
-                    <h3>
-                        INGRESO A SISTEMA SAPCO</h3>
-                </div>
-                <div class="decoration">
-                </div>
+					<h3>
+						INFORMACIÓN DE CLIENTE</h3>
+				</div>
+				<div class="decoration">
+				</div>
+				<div class="container no-bottom">
+					<div class="big-notification blue-notification">
+						<h4 class="uppercase">
+							AYUDA</h4>
+						<a href="#" class="close-big-notification">x</a>
+						<p>
+							En este módulo podrá registrar la información para la creación de nuevos clientes.
+						</p>
+					</div>
+				</div>
                 <div class="container no-bottom">
-                    <div class="big-notification blue-notification">
-                        <h4 class="uppercase">
-                            SERVICIOS SAPCO</h4>
-                        <a href="#" class="close-big-notification">x</a>
-                        <p>
-                            Monitoreo del carro 24/7.<br/>
-							Precisión sobre las necesidades de los vehículos.<br/>
-							Alerta en pagos de Impuestos y SOAT.<br/>
-							Hoja de vida del vehículo.<br/>
-							Valorización del vehículo respecto al mercado.<br/>
-                        </p>
-                    </div>
-                </div>
-               
-                <br />
-                <div class="container no-bottom">
-                    <form method="post" class="contactForm" id="contactForm" style="display: block !important;">
+                    <form method="post" class="contactForm" id="contactForm" style="display: block !important;" >
                     <fieldset>
-                        <div class="formValidationError" id="usuario_error">
-                            <div class="static-notification-red tap-dismiss-notification">
-                                <p class="center-text uppercase">
-                                    Debe ingresar el nombre de usuario</p>
-                            </div>
-                        </div>
-                        <div class="formValidationError" id="password_error">
-                            <div class="static-notification-red tap-dismiss-notification">
-                                <p class="center-text uppercase">
-                                    Debe ingresar la contraseña</p>
-                            </div>
-                        </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactNameField" for="contactNameField">
-                                Usuario:<span>(requerido)</span></label>
-                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
-                                id="contactNameField" />
+                                Tipo de documento:<span>(requerido)</span></label>
+                            <select class="styled-select" name="selectTipo" id="selectTipo">
+                                <option value='1'>Cédula</option>
+                                <option value='2'>Cédula Extranjería</option>
+                                <option value='3'>Pasaporte</option>
+                                <option value='4'>Tarjeta de Identidad</option>
+                            </select>
                         </div>
                         <div class="formFieldWrap">
                             <label class="field-title contactEmailField" for="contactEmailField">
-                                Contraseña:<span>(requerido)</span></label>
-                            <input type="password" name="contactEmailField" value="" class="contactField requiredField"
-                                id="contactEmailField" />
+                                Número de documento:<span>(requerido)</span></label>
+                            <input type="numeric" name="txtDocumento" value="" class="contactField requiredField"
+                                id="txtDocumento" min="0" max="1000000000" required autofocus/>
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Nombres:<span>(requerido)</span></label>
+                            <input type="text" name="txtNombres" value="" class="contactField requiredField"
+                                id="txtNombres" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Apellidos:<span>(requerido)</span></label>
+                            <input type="text" name="txtApellidos" value="" class="contactField requiredField"
+                                id="txtApellidos" />
+                        </div>                       
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Fecha de nacimiento:</label>
+                            <input type="text" placeholder="AAAA/MM/DD" name="txtFecha" value="2000/01/01" class="contactField requiredField"
+                                id="txtFecha" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Sexo:<span>(requerido)</span></label>
+                            <select class="styled-select" name="selectSexo" id="selectSexo">
+                                <option value='1'>Masculino</option>
+                                <option value='2'>Femenino</option>
+                            </select>
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Teléfono:<span>(requerido)</span></label>
+                            <input type="text" name="txtTelefono" value="" class="contactField requiredField"
+                                id="txtTelefono" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Celular:<span>(requerido)</span></label>
+                            <input type="text" name="txtCelular" value="" class="contactField requiredField"
+                                id="txtCelular" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Dirección:<span>(requerido)</span></label>
+                            <input type="text" name="txtDireccion" value="" class="contactField requiredField"
+                                id="txtDireccion" />
+                        </div>
+                        <div class="formFieldWrap">
+                            <label class="field-title contactEmailField" for="contactEmailField">
+                                Correo:</label>
+                            <input type="text" name="txtCorreo" value="" class="contactField requiredField"
+                                id="txtCorreo" />
                         </div>
                         <br />
                         <div class="formSubmitButtonErrorsWrap">
                             <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
-                                value="Enviar" data-formid="contactForm" onclick="iniciar_sesion();" />
-                            <div class="static-notification-green tap-dismiss-notification" style="display: none; margin-top: 15px;" id="div_guardado">
-                                <p class="center-text">Los datos han sido almacenados correctamente</p>
-                            </div>
+                                value="Enviar" data-formid="contactForm" onclick="MM_validateForm('selectTipo','','R','txtDocumento','','R','txtNombres','','R','txtApellidos','','R','selectSexo','','R','txtTelefono','','R','txtCelular','','R','txtDireccion','','R','txtCorreo','','isEmail');return document.MM_returnValue" />
                         </div>
                     </fieldset>
                     </form>
@@ -153,70 +188,46 @@
                         <a href="#" class="facebook-footer"></a><a href="#" class="goup-footer"></a><a href="#"
                             class="twitter-footer"></a>
                     </div>
-                   <p class="copyright uppercase center-text no-bottom">SAPCO 2014<br> Todos los derechos reservados</p>      
+                   <p class="copyright uppercase center-text no-bottom">Gestión de cobros 2014<br> Todos los derechos reservados</p>      
                 </div>
             </div>
         </div>
         
     </div>
     <script type="text/javascript">
-       
+        <!-- $( document ).ready(function() {            
+		  if(sessionStorage.getItem("estadoLogin") == "Exitoso"){
+			  configurar_db();
+		  }else{
+				location.href = "index.html";
+			}
+        });
+		
+		function closedSession(){
+		    sessionStorage.setItem("estadoLogin", "");
+			location.href = "index.html";
+		} -->
+		
         
-        function iniciar_sesion() {
+		// Función para validar los campos del formulario de registro de clientes
+		function MM_validateForm() { //v4.0		
+		  if (document.getElementById){
+			var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+			for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+			  if (val) { nm=val.name; if ((val=val.value)!="") {
+				if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+				  if (p<1 || p==(val.length-1)) errors+='- '+nm.slice(3,20)+' debe contener una dirección de correo electrónica.\n';
+				} else if (test!='R') { num = parseFloat(val);
+				  if (isNaN(val)) errors+='- '+nm.slice(3,20)+' debe contener un número.\n';
+				  if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+					min=test.substring(8,p); max=test.substring(p+1);
+					if (num<min || max<num) errors+='- '+nm.slice(3,20)+' debe contener un número entre '+min+' y '+max+'.\n';
+			  } } } else if (test.charAt(0) == 'R') errors += '- '+nm.slice(3,20)+' es requerido.\n'; }
+			} 			
+			if (errors) alert('Los siguientes erro(s) ocurrieron:\n'+errors); else{guardarCliente();}
+			document.MM_returnValue = (errors == '');
+		}}
 
-            if($('#contactNameField').val() == ""){
-                alert("Debe ingresar el nombre de usuario");
-            }
-            else{
-                if($('#contactEmailField').val() == ""){
-                    alert("Debe ingresar la contraseña");
-                }
-                else{
-                    MostrarDivCargando();
-                    var usuario = $('#contactNameField').val();
-                    var pass = $('#contactEmailField').val();					
-                    var url = "http://localhost:8081/Service1.svc/getUsuario?login="+usuario+"&password="+pass;
-                    $.ajax({
-                        url: url,
-                        type: 'GET',
-                        dataType: 'json',
-                        crossDomain: true,
-                        success: function (data) {
-
-                            $.each(data, function (i, field) {
-
-                                $.each(field, function (x, item) {
-
-                                    if(field[x].Codusua == 0){
-                                        OcultarDivCargando();
-                                        alert(field[x].Mensaje);
-                                    }
-                                    else{
-                                        OcultarDivCargando();
-										localStorage.setItem("idUsuario", field[x].Codusua); 
-										alert(field[x].Mensaje);
-										location.href = "infoclientes.html";
-                                    }
-                                });
-
-                            });
-                        },
-                        error: function (x, y, z) {
-                            alert("No se encuentra una conexión 3G o Wifi activa.")
-                            OcultarDivCargando();
-                        }, 
-                        timeout: 15000                          
-                    });
-                }
-            
-            }
-        }
-
-        
-        function errorGeneralBD(err){ 
-            console.log(err);
-        }
-        
     </script>
     <style>
         #contactNameField {
