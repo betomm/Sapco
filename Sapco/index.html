@@ -175,7 +175,7 @@
                     MostrarDivCargando();
                     var usuario = $('#contactNameField').val();
                     var pass = $('#contactEmailField').val();					
-                    var url = "http://localhost:8081/Service1.svc/getUsuario?login="+usuario+"&password="+pass;
+                    var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getUsuario?login="+usuario+"&password="+pass;
                     $.ajax({
                         url: url,
                         type: 'GET',
