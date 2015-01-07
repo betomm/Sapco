@@ -161,7 +161,8 @@
 		var cliente = {Apellidos:"", Correo:"", Direccion:"", DocIdentidad:"", FechaNacimiento:"", FechaVenceLicencia:"", Nombre:"", Telefono:"", TipoDocId:""};
         var clientes = [];
 		
-		function InfoClientes(){                 
+		function InfoClientes(){    
+                alert(sessionStorage.getItem("idUsuario"));		
 				var texto="";
 				if(sessionStorage.getItem("idUsuario") != 0 ){	               
                 var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario");
