@@ -164,7 +164,7 @@
 		function InfoClientes(){                 
 				var texto="";
 				if(sessionStorage.getItem("idUsuario") != 0 ){	               
-                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoUsuario?idUsuario="+localStorage.getItem("idUsuario");
+                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario");
                     $.ajax({
                         url: url,
                         type: 'GET',
