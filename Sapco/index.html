@@ -193,8 +193,7 @@
                                     }
                                     else{
                                         OcultarDivCargando();
-										localStorage.setItem("idUsuario", field[x].Codusua); 
-										alert(field[x].Mensaje);
+										sessionStorage.setItem("idUsuario", field[x].Codusua); 										
 										location.href = "infoclientes.html";
                                     }
                                 });
