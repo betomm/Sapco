@@ -99,7 +99,7 @@
 				</div>
 				<div class="container no-bottom" style="text-align: center;">
 					<h3>
-						INFORMACIÓN DE CLIENTE</h3>
+						INFORMACIÓN DE VEHICULO</h3>
 				</div>
 				<div class="decoration">
 				</div>
@@ -109,7 +109,7 @@
 							AYUDA</h4>
 						<a href="#" class="close-big-notification">x</a>
 						<p>
-							En este módulo podra visualizar la información asociada al usuario
+							En este módulo podra visualizar la información asociada al vehiculo
 						</p>
 					</div>
 				</div>
@@ -117,7 +117,7 @@
 				<br />
                 <div class="container no-bottom">
                     <h4>
-                        Listado de Clientes
+                        Listado de Vehiculos del cliente
                     </h4>
                 </div>               
                 <br />
@@ -155,16 +155,16 @@
 		  if(sessionStorage.getItem("idUsuario") == 0){			  			 
 			  location.href = "index.html";			  
 		  }else{		        
-				InfoClientes();
+				InfoVehiculos();
 			}
         });
-		var cliente = {Apellidos:"", Correo:"", Direccion:"", DocIdentidad:"", FechaNacimiento:"", FechaVenceLicencia:"", Nombre:"", Telefono:"", TipoDocId:""};
-        var clientes = [];
+		var vehiculo = {Color:"", CompaniaSeguroTR:"", Estado:"", KilometrajeIngreso:"", Linea:"", Marca:"", Modelo:"", Placa:"", Referencia:"", SistGasVehicular:"", Tipo:""};
+        var vehiculos = [];
 		
-		function InfoClientes(){                    
+		function InfoVehiculos(){                    
 				var texto="";
 				if(sessionStorage.getItem("idUsuario") != 0 ){	               
-                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario");
+                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoVehiculos?idUsuario="+sessionStorage.getItem("idUsuario");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -174,14 +174,18 @@
 
                             $.each(data, function (i, field) {                                
                                 $.each(field, function (x, item) {									
-									texto+='<div class="container"><div class="toggle-2"><a href="#" class="deploy-toggle-2">'+field[x].Nombre+ ' ' + field[x].Apellidos +'</a><div class="toggle-content"><div class="one-half-responsive "><div class="submenu-navigation"><div class="submenu-nav-items" style="overflow: hidden; display: block;"></div>'+
-									       '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Tel. '+field[x].Telefono+'</li></ul></a>'+
-									       '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Cédula: '+field[x].DocIdentidad+'</li></ul></a>'+
-										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Dirección: '+field[x].Direccion+'</li></ul></a>'+
-										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha Nacimiento: '+field[x].FechaNacimiento+'</li></ul></a>'+
-										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Correo: '+field[x].Correo+'</li></ul></a>'+
-										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha Vence Licencia: '+field[x].FechaVenceLicencia+'</li></ul></a>'+
-									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Ver Información de Vehículo" onclick="consultarVehiculos('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+									texto+='<div class="container"><div class="toggle-2"><a href="#" class="deploy-toggle-2">VEHÍCULO '+field[x].Placa +'</a><div class="toggle-content"><div class="one-half-responsive "><div class="submenu-navigation"><div class="submenu-nav-items" style="overflow: hidden; display: block;"></div>'+
+									       '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Marca: '+field[x].Marca+'</li></ul></a>'+
+									       '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Linea: '+field[x].Linea+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Modelo: '+field[x].Modelo+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Referencia: '+field[x].Referencia+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Tipo: '+field[x].Tipo+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Color: '+field[x].Color+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Estado: '+field[x].Estado+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Sistema de Gas Vehicular: '+field[x].SistGasVehicular+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Compañia de Seguro TR: '+field[x].CompaniaSeguroTR+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Kilometraje al Ingreso a SAPCO: '+field[x].KilometrajeIngreso+'</li></ul></a>'+
+									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Ver Información de Servicios" onclick="consultarServicios('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
                                 });
                                 
                             });
@@ -203,8 +207,8 @@
 				}
         }
 		
-		 function consultarVehiculos(codCliente){
-            location.href = "infovehiculos.html";
+		 function consultarServicios(codCliente){
+            //location.href = "infoservicios.html";
         }
 
     </script>
