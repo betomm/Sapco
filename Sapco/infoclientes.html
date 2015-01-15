@@ -117,7 +117,7 @@
 				<br />
                 <div class="container no-bottom">
                     <h4>
-                        Listado de Clientes
+                        <!--Listado de Clientes-->
                     </h4>
                 </div>               
                 <br />
@@ -174,14 +174,16 @@
 
                             $.each(data, function (i, field) {                                
                                 $.each(field, function (x, item) {									
+									
 									texto+='<div class="container"><div class="toggle-2"><a href="#" class="deploy-toggle-2">'+field[x].Nombre+ ' ' + field[x].Apellidos +'</a><div class="toggle-content"><div class="one-half-responsive "><div class="submenu-navigation"><div class="submenu-nav-items" style="overflow: hidden; display: block;"></div>'+
 									       '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Tel. '+field[x].Telefono+'</li></ul></a>'+
 									       '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Cédula: '+field[x].DocIdentidad+'</li></ul></a>'+
 										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Dirección: '+field[x].Direccion+'</li></ul></a>'+
-										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha Nacimiento: '+field[x].FechaNacimiento+'</li></ul></a>'+
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha Nacimiento: '+convertirFecha(field[x].FechaNacimiento)+'</li></ul></a>'+
 										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Correo: '+field[x].Correo+'</li></ul></a>'+
-										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha Vence Licencia: '+field[x].FechaVenceLicencia+'</li></ul></a>'+
-									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Ver Información de Vehículo" onclick="consultarVehiculos('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha Vence Licencia: '+convertirFecha(field[x].FechaVenceLicencia)+'</li></ul></a>'+
+									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Editar Información de Cliente" onclick="actualizarInfoCliente('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>'+
+										   '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Ver Información de Vehículo" onclick="consultarVehiculos('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
                                 });
                                 
                             });
@@ -206,7 +208,28 @@
 		 function consultarVehiculos(codCliente){
             location.href = "infovehiculos.html";
         }
-
+		
+		function actualizarInfoCliente(codCliente){
+		 location.href = "actualizarinfocliente.html";
+		}
+		
+	
+		function convertirFecha(oldfecha){
+			
+			var valores=oldfecha.replace(' 12:00:00 AM','').split("/");
+			
+			if(valores[1].length==1){
+			
+			valores[1]="0"+valores[1];
+			}
+			
+			if(valores[0].length==1){
+			
+			valores[0]="0"+valores[0];
+			}
+			return valores[2]+"-"+valores[0]+"-"+valores[1];
+		
+		}
     </script>
     <style>
         .submenu-nav-items a
