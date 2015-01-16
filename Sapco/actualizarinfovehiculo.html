@@ -65,8 +65,12 @@
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>                
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="index.html" class="nav-item home-icon">Inicio<em class="selected-item"></em></a>
+                    <a href="index.html" class="nav-item home-icon">Nueva Sesion<em class="selected-item"></em></a>
                 </div>
+				<div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                   <a href="infoclientes.html" class="nav-item home-icon">Mis datos personales<em class="selected-item"></em></a>
+                </div>	
 				<div class="sidebar-decoration"></div>                               
                 <div class="sidebar-breadcrumb">
                 </div>
@@ -85,22 +89,19 @@
                 </div>
 				<div class="container no-bottom" style="text-align: center;">
                     <h3>
-                        INGRESO A SISTEMA SAPCO</h3>
+                        ACTUALIZA LA INFORMACIÓN DE TU VEHÍCULO</h3>
                 </div>
                 <div class="decoration">
                 </div>
                 <div class="container no-bottom">
                     <div class="big-notification blue-notification">
                         <h4 class="uppercase">
-                            SERVICIOS SAPCO</h4>
+                            Actualiza tu información regularmente</h4>
                         <a href="#" class="close-big-notification">x</a>
                         <p>
-                            Monitoreo del carro 24/7.<br/>
-							Precisión sobre las necesidades de los vehículos.<br/>
-							Alerta en pagos de Impuestos y SOAT.<br/>
-							Hoja de vida del vehículo.<br/>
-							Valorización del vehículo respecto al mercado.<br/>
-                        </p>
+                            Para un mejor servicio, recuerda actualizar la<br/>
+							información de  tu vehículo de manera regular.<br/>
+						</p>
                     </div>
                 </div>
                
@@ -120,26 +121,19 @@
                                     Debe ingresar la contraseña</p>
                             </div>
                         </div>
-                        <div class="formFieldWrap">
-                            <label class="field-title contactNameField" for="contactNameField">
-                                Usuario:<span>(requerido)</span></label>
-                            <input type="text" name="contactNameField" value="" class="contactField requiredField"
-                                id="contactNameField" />
-                        </div>
-                        <div class="formFieldWrap">
-                            <label class="field-title contactEmailField" for="contactEmailField">
-                                Contraseña:<span>(requerido)</span></label>
-                            <input type="password" name="contactEmailField" value="" class="contactField requiredField"
-                                id="contactEmailField" />
-                        </div>
-                        <br />
-                        <div class="formSubmitButtonErrorsWrap">
+						<div id="info-cliente">
+						</div>
+						
+						<br />
+                        <!--
+						<div class="formSubmitButtonErrorsWrap">
                             <input type="submit" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton"
                                 value="Enviar" data-formid="contactForm" onclick="iniciar_sesion();" />
                             <div class="static-notification-green tap-dismiss-notification" style="display: none; margin-top: 15px;" id="div_guardado">
                                 <p class="center-text">Los datos han sido almacenados correctamente</p>
                             </div>
                         </div>
+						-->
                     </fieldset>
                     </form>
                 </div>
@@ -162,20 +156,26 @@
     <script type="text/javascript">
        
         
-        function iniciar_sesion() {
-
-            if($('#contactNameField').val() == ""){
-                alert("Debe ingresar el nombre de usuario");
-            }
-            else{
-                if($('#contactEmailField').val() == ""){
-                    alert("Debe ingresar la contraseña");
-                }
-                else{
-                    MostrarDivCargando();
-                    var usuario = $('#contactNameField').val();
-                    var pass = $('#contactEmailField').val();					
-                    var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getUsuario?login="+usuario+"&password="+pass;
+        function closedSession(){
+		    sessionStorage.setItem("idUsuario", 0);
+			location.href = "index.html";
+		} 
+        
+		$( document ).ready(function() {
+		  if(sessionStorage.getItem("idUsuario") == 0){			  			 
+			  location.href = "index.html";			  
+		  }else{		        
+				InfoVehiculosEditable();
+			}
+        });
+		
+		var vehiculo = {Color:"", CompaniaSeguroTR:"", Estado:"", KilometrajeIngreso:"", Linea:"", Marca:"", Modelo:"", Placa:"", Referencia:"", SistGasVehicular:"", Tipo:"", Vehi_id:""};
+        var vehiculos = [];
+		function InfoVehiculosEditable(){                    
+				var texto="";
+				if(sessionStorage.getItem("idUsuario") != 0 ){
+                			
+                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoVehiculo?idUsuario="+sessionStorage.getItem("idUsuario");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -183,31 +183,108 @@
                         crossDomain: true,
                         success: function (data) {
 
-                            $.each(data, function (i, field) {
-
-                                $.each(field, function (x, item) {
-
-                                    if(field[x].Codusua == 0){
-                                        OcultarDivCargando();
-                                        alert(field[x].Mensaje);
-                                    }
-                                    else{
-                                        OcultarDivCargando();
-										sessionStorage.setItem("idUsuario", field[x].Codusua); 										
-										location.href = "infoclientes.html";
-                                    }
+                            $.each(data, function (i, field) {                                
+                                $.each(field, function (x, item) {									
+									
+									var idVehiculo=sessionStorage.getItem("idVehiculo");
+									if(field[x].Vehi_id==idVehiculo){
+										texto+='<div class="formFieldWrap"><label class="field-title PlacaField" for="PlacaField">Placa: <span>(requerido)</span></label><input type="text" name="PlacaField" value="'+field[x].Placa+ '" class="contactField requiredField" id="PlacaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title MarcaField" for="MarcaField">Marca: <span>(requerido)</span></label><input type="text" name="MarcaField" value="'+field[x].Marca+ '" class="contactField requiredField" id="MarcaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title LineaField" for="LineaField">Teléfono:</label><input type="text" name="LineaField" value="'+field[x].Linea+ '" class="contactField requiredField" id="LineaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ModeloField" for="ModeloField">Cédula:</label><input type="text" name="ModeloField" value="'+field[x].Modelo+ '" class="contactField requiredField" id="ModeloField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ReferenciaField" for="ReferenciaField">Dirección:</label><input type="text" name="ReferenciaField" value="'+field[x].Referencia+ '" class="contactField requiredField" id="ReferenciaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title TipoField" for="TipoField">Fecha de Nacimiento:</label><input type="text" name="TipoField" value="'+ field[x].Tipo + '" class="contactField requiredField" id="TipoField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ColorField" for="ColorField">Color:</label><input type="text" name="ColorField" value="'+field[x].Color+ '" class="contactField requiredField" id="ColorField" />'+
+											   //'<div class="formFieldWrap"><label class="field-title EstadoField" for="EstadoField">Fecha de vencimiento de licencia: </label><input type="date" name="EstadoField" value="'+field[x].Estado '" class="contactField requiredField" id="EstadoField" />'+
+											   '<div class="formFieldWrap"><label class="field-title SistGasVehicularField" for="SistGasVehicularField">SistGasVehicular:</label><input type="text" name="SistGasVehicularField" value="'+field[x].SistGasVehicular+ '" class="contactField requiredField" id="SistGasVehicularField" />'+
+											   '<div class="formFieldWrap"><label class="field-title CompaniaSeguroTRField" for="CompaniaSeguroTRField">CompaniaSeguroTR:</label><input type="text" name="CompaniaSeguroTRField" value="'+field[x].CompaniaSeguroTR+ '" class="contactField requiredField" id="CompaniaSeguroTRField" />'+
+											   '<div class="formFieldWrap"><label class="field-title KilometrajeIngresoField" for="KilometrajeIngresoField">KilometrajeIngreso:</label><input type="text" name="KilometrajeIngresoField" value="'+field[x].KilometrajeIngreso+ '" class="contactField requiredField" id="KilometrajeIngresoField" />'+
+											   '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoClientesEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+									}
                                 });
-
+                                
                             });
+							document.getElementById("info-cliente").innerHTML = texto;
+							$('.deploy-toggle-2').click(function () {
+							$(this).parent().find('.toggle-content').toggle(100);
+							$(this).toggleClass('toggle-2-active');
+							return false;
+							});
                         },
                         error: function (x, y, z) {
-                            alert("No se encuentra una conexión 3G o Wifi activa.")
                             OcultarDivCargando();
                         }, 
                         timeout: 15000                          
-                    });
+                    }); 
+				
+				
+				}else{
+				  alert("El codigo de usurio se ha perdido, para poder visualizar la información por favor loguearse de nuevo en el sistema");
+				}
+        }
+		
+		
+		
+		
+		function ActualizarInfoVehiculoEditable(codCliente) {
+
+            var nombre = $('#NombreField').val();
+            var apellidos = $('#ApellidosField').val();
+            var	telefono = $('#TelefonoField').val();
+			var	docidentidad= $('#CedulaField').val();	
+			var	direccion = $('#DireccionField').val();	
+			var	fechanacimiento = $('#FechaNacimientoField').val();	
+			var	correo = $('#CorreoField').val();	
+			var	fechavencelicencia = $('#FechaVenceLicenciaField').val();
+			if(nombre == ""){
+                alert("Debes ingresar tu nombre");
+            }
+            else{
+                if(apellidos == ""){
+                    alert("Debes ingresar tus apellidos");
                 }
-            
+				if(fechanacimiento =="" || fechavencelicencia==""){
+				      alert("Debes ingresar las fechas solicitadas");
+				
+				}else{
+					
+						MostrarDivCargando();
+						
+					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario")+"&nombre="+nombre+"&apellidos="+apellidos+"&telefono="+telefono+"&docidentidad="+docidentidad+"&direccion="+direccion+"&fechaNacimiento="+fechanacimiento+"&correo="+correo+"&fechavencelicencia="+fechavencelicencia);
+						$.ajax({
+							url: url,
+							type: 'GET',
+							dataType: 'json',
+							crossDomain: true,
+							success: function (data) {
+
+								$.each(data, function (i, field) {
+
+									$.each(field, function (x, item) {
+
+										if(field[x].Codusua == 0){
+											OcultarDivCargando();
+											alert(field[x].Mensaje);
+										}
+										else{
+											if(field[x].Codusua==sessionStorage.getItem("idUsuario")) {
+											OcultarDivCargando();
+											alert(field[x].Mensaje); 										
+											location.href = "infoclientes.html";
+											}
+										}
+									});
+
+								});
+							},
+							error: function (x, y, z) {
+								alert("No se encuentra una conexión 3G o Wifi activa.")
+								OcultarDivCargando();
+							}, 
+							timeout: 15000                          
+						});
+					
+                }
             }
         }
 
@@ -215,6 +292,24 @@
         function errorGeneralBD(err){ 
             console.log(err);
         }
+		
+		function convertirFecha(oldfecha){
+			
+			var valores=oldfecha.replace(' 12:00:00 AM','').split("/");
+			
+			if(valores[1].length==1){
+			
+			valores[1]="0"+valores[1];
+			}
+			
+			if(valores[0].length==1){
+			
+			valores[0]="0"+valores[0];
+			}
+			return valores[2]+"-"+valores[0]+"-"+valores[1];
+		
+		}
+
         
     </script>
     <style>

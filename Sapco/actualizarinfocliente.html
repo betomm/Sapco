@@ -65,9 +65,13 @@
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>                
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="index.html" class="nav-item home-icon">Inicio<em class="selected-item"></em></a>
+                    <a href="index.html" class="nav-item home-icon">Nueva sesión<em class="selected-item"></em></a>	
                 </div>
-				<div class="sidebar-decoration"></div>                               
+				<div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                   <a href="infoclientes.html" class="nav-item home-icon">Mis datos personales<em class="selected-item"></em></a>
+                </div>	
+                <div class="sidebar-decoration"></div>				
                 <div class="sidebar-breadcrumb">
                 </div>
             </div>         
@@ -180,6 +184,7 @@
 
                             $.each(data, function (i, field) {                                
                                 $.each(field, function (x, item) {									
+									
 									texto+='<div class="formFieldWrap"><label class="field-title NombreField" for="NombreField">Nombre: <span>(requerido)</span></label><input type="text" name="NombreField" value="'+field[x].Nombre+ '" class="contactField requiredField" id="NombreField" />'+
 								           '<div class="formFieldWrap"><label class="field-title ApellidosField" for="ApellidosField">Apellidos: <span>(requerido)</span></label><input type="text" name="ApellidosField" value="'+field[x].Apellidos+ '" class="contactField requiredField" id="ApellidosField" />'+
 									       '<div class="formFieldWrap"><label class="field-title TelefonoField" for="TelefonoField">Teléfono:</label><input type="text" name="TelefonoField" value="'+field[x].Telefono+ '" class="contactField requiredField" id="TelefonoField" />'+
