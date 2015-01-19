@@ -220,7 +220,9 @@
 		
 		function ActualizarInfoClientesEditable(codCliente) {
 
-            var nombre = $('#NombreField').val();
+            
+			
+			var nombre = $('#NombreField').val();
             var apellidos = $('#ApellidosField').val();
             var	telefono = $('#TelefonoField').val();
 			var	docidentidad= $('#CedulaField').val();	
@@ -230,17 +232,33 @@
 			var	fechavencelicencia = $('#FechaVenceLicenciaField').val();
 			if(nombre == ""){
                 alert("Debes ingresar tu nombre");
+				return;
             }
             else{
                 if(apellidos == ""){
                     alert("Debes ingresar tus apellidos");
+					return;
                 }
+				var isDate = esFechaValida(esFechaValida);
+				if(!isDate){
+				    alert("La fecha de nacimiento no es válida. El Formato debe ser YYYY-MM-DD");
+					return;
+				}
+				isDate=esFechaValida(fechavencelicencia);
+				if(!isDate){
+					alert("La fecha de vencimiento de licencia no es válida. El Formato debe ser YYYY-MM-DD");
+					return;
+				}
 				if(fechanacimiento =="" || fechavencelicencia==""){
 				      alert("Debes ingresar las fechas solicitadas");
+					  return;
 				
 				}else{
 					
-						MostrarDivCargando();
+					 var confirmar=confirm("¿Confirma que desea actualizar la información?");
+					 if(confirmar){
+					   
+					   MostrarDivCargando();
 						
 					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario")+"&nombre="+nombre+"&apellidos="+apellidos+"&telefono="+telefono+"&docidentidad="+docidentidad+"&direccion="+direccion+"&fechaNacimiento="+fechanacimiento+"&correo="+correo+"&fechavencelicencia="+fechavencelicencia);
 						$.ajax({
@@ -275,7 +293,7 @@
 							}, 
 							timeout: 15000                          
 						});
-					
+					}
                 }
             }
         }
@@ -284,6 +302,10 @@
         function errorGeneralBD(err){ 
             console.log(err);
         }
+		
+		function esFechaValida(date) {
+                             return (new Date(date) !== "Invalid Date" && !isNaN(new Date(date)) ) ) ? true : false;
+		}
 		
 		function convertirFecha(oldfecha){
 			

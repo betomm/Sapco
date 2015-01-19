@@ -228,20 +228,23 @@
 		
 		function ActualizarInfoVehiculoEditable(codCliente) {
 
-            var nombre = $('#NombreField').val();
-            var apellidos = $('#ApellidosField').val();
-            var	telefono = $('#TelefonoField').val();
-			var	docidentidad= $('#CedulaField').val();	
-			var	direccion = $('#DireccionField').val();	
-			var	fechanacimiento = $('#FechaNacimientoField').val();	
-			var	correo = $('#CorreoField').val();	
-			var	fechavencelicencia = $('#FechaVenceLicenciaField').val();
-			if(nombre == ""){
-                alert("Debes ingresar tu nombre");
+            var placa = $('#PlacaField').val();
+            var marca = $('#MarcaField').val();
+            var	linea = $('#LineaField').val();
+			var	modelo= $('#ModeloField').val();	
+			var	referencia = $('#ReferenciaField').val();	
+			var	tipo = $('#TipoField').val();	
+			var	color = $('#ColorField').val();	
+			//var	estado = $('#EstadoField').val();
+			var	sistgasvehicular = $('#SistGasVehicularField').val();
+			var	companiasegurotr = $('#CompaniaSeguroTRField').val();	
+			var	kilometrajeingreso = $('#KilometrajeIngresoField').val();	
+			if(placa == ""){
+                alert("Debes ingresar la placa del vehiculo");
             }
             else{
-                if(apellidos == ""){
-                    alert("Debes ingresar tus apellidos");
+                if(placa == ""){
+                    alert("Debes ingresar una placa");
                 }
 				if(fechanacimiento =="" || fechavencelicencia==""){
 				      alert("Debes ingresar las fechas solicitadas");
@@ -262,15 +265,15 @@
 
 									$.each(field, function (x, item) {
 
-										if(field[x].Codusua == 0){
+										if(field[x].Vehi_id == 0){
 											OcultarDivCargando();
 											alert(field[x].Mensaje);
 										}
 										else{
-											if(field[x].Codusua==sessionStorage.getItem("idUsuario")) {
+											if(field[x].Vehi_id==sessionStorage.getItem("idVehiculo")) {
 											OcultarDivCargando();
 											alert(field[x].Mensaje); 										
-											location.href = "infoclientes.html";
+											location.href = "infovehiculos.html";
 											}
 										}
 									});
