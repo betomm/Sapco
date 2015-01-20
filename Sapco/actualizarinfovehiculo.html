@@ -71,6 +71,12 @@
                 <div class="navigation-item">
                    <a href="infoclientes.html" class="nav-item home-icon">Mis datos personales<em class="selected-item"></em></a>
                 </div>	
+				
+				<div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                   <a href="infovehiculos.html" class="nav-item home-icon">Mis Vehículos<em class="selected-item"></em></a>
+                </div>	
+				
 				<div class="sidebar-decoration"></div>                               
                 <div class="sidebar-breadcrumb">
                 </div>
@@ -189,17 +195,17 @@
 									var idVehiculo=sessionStorage.getItem("idVehiculo");
 									if(field[x].Vehi_id==idVehiculo){
 										texto+='<div class="formFieldWrap"><label class="field-title PlacaField" for="PlacaField">Placa: <span>(requerido)</span></label><input type="text" name="PlacaField" value="'+field[x].Placa+ '" class="contactField requiredField" id="PlacaField" />'+
-											   '<div class="formFieldWrap"><label class="field-title MarcaField" for="MarcaField">Marca: <span>(requerido)</span></label><input type="text" name="MarcaField" value="'+field[x].Marca+ '" class="contactField requiredField" id="MarcaField" />'+
-											   '<div class="formFieldWrap"><label class="field-title LineaField" for="LineaField">Teléfono:</label><input type="text" name="LineaField" value="'+field[x].Linea+ '" class="contactField requiredField" id="LineaField" />'+
-											   '<div class="formFieldWrap"><label class="field-title ModeloField" for="ModeloField">Cédula:</label><input type="text" name="ModeloField" value="'+field[x].Modelo+ '" class="contactField requiredField" id="ModeloField" />'+
-											   '<div class="formFieldWrap"><label class="field-title ReferenciaField" for="ReferenciaField">Dirección:</label><input type="text" name="ReferenciaField" value="'+field[x].Referencia+ '" class="contactField requiredField" id="ReferenciaField" />'+
-											   '<div class="formFieldWrap"><label class="field-title TipoField" for="TipoField">Fecha de Nacimiento:</label><input type="text" name="TipoField" value="'+ field[x].Tipo + '" class="contactField requiredField" id="TipoField" />'+
+											   '<div class="formFieldWrap"><label class="field-title MarcaField" for="MarcaField">Marca: </label><input type="text" name="MarcaField" value="'+field[x].Marca+ '" class="contactField requiredField" id="MarcaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title LineaField" for="LineaField">Linea:</label><input type="text" name="LineaField" value="'+field[x].Linea+ '" class="contactField requiredField" id="LineaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ModeloField" for="ModeloField">Modelo:</label><input type="text" name="ModeloField" value="'+field[x].Modelo+ '" class="contactField requiredField" id="ModeloField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ReferenciaField" for="ReferenciaField">Referencia:</label><input type="text" name="ReferenciaField" value="'+field[x].Referencia+ '" class="contactField requiredField" id="ReferenciaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title TipoField" for="TipoField">Tipo de vehículo:</label><input type="text" name="TipoField" value="'+ field[x].Tipo + '" class="contactField requiredField" id="TipoField" />'+
 											   '<div class="formFieldWrap"><label class="field-title ColorField" for="ColorField">Color:</label><input type="text" name="ColorField" value="'+field[x].Color+ '" class="contactField requiredField" id="ColorField" />'+
 											   //'<div class="formFieldWrap"><label class="field-title EstadoField" for="EstadoField">Fecha de vencimiento de licencia: </label><input type="date" name="EstadoField" value="'+field[x].Estado '" class="contactField requiredField" id="EstadoField" />'+
-											   '<div class="formFieldWrap"><label class="field-title SistGasVehicularField" for="SistGasVehicularField">SistGasVehicular:</label><input type="text" name="SistGasVehicularField" value="'+field[x].SistGasVehicular+ '" class="contactField requiredField" id="SistGasVehicularField" />'+
-											   '<div class="formFieldWrap"><label class="field-title CompaniaSeguroTRField" for="CompaniaSeguroTRField">CompaniaSeguroTR:</label><input type="text" name="CompaniaSeguroTRField" value="'+field[x].CompaniaSeguroTR+ '" class="contactField requiredField" id="CompaniaSeguroTRField" />'+
-											   '<div class="formFieldWrap"><label class="field-title KilometrajeIngresoField" for="KilometrajeIngresoField">KilometrajeIngreso:</label><input type="text" name="KilometrajeIngresoField" value="'+field[x].KilometrajeIngreso+ '" class="contactField requiredField" id="KilometrajeIngresoField" />'+
-											   '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoClientesEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+											   '<div class="formFieldWrap"><label class="field-title SistGasVehicularField" for="SistGasVehicularField">Sistema Gas Vehicular:</label><input type="text" name="SistGasVehicularField" value="'+field[x].SistGasVehicular+ '" class="contactField requiredField" id="SistGasVehicularField" />'+
+											   '<div class="formFieldWrap"><label class="field-title CompaniaSeguroTRField" for="CompaniaSeguroTRField">Compañia Seguro TR:</label><input type="text" name="CompaniaSeguroTRField" value="'+field[x].CompaniaSeguroTR+ '" class="contactField requiredField" id="CompaniaSeguroTRField" />'+
+											   '<div class="formFieldWrap"><label class="field-title KilometrajeIngresoField" for="KilometrajeIngresoField">Kilometraje Ingreso:</label><input type="text" name="KilometrajeIngresoField" value="'+field[x].KilometrajeIngreso+ '" class="contactField requiredField" id="KilometrajeIngresoField" />'+
+											   '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoVehiculoEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
 									}
                                 });
                                 
@@ -241,19 +247,23 @@
 			var	kilometrajeingreso = $('#KilometrajeIngresoField').val();	
 			if(placa == ""){
                 alert("Debes ingresar la placa del vehiculo");
+				return;
             }
             else{
                 if(placa == ""){
-                    alert("Debes ingresar una placa");
-                }
-				if(fechanacimiento =="" || fechavencelicencia==""){
-				      alert("Debes ingresar las fechas solicitadas");
+                    //alert("Debes ingresar una placa");
+					return;
+                
+				
 				
 				}else{
 					
-						MostrarDivCargando();
+					var confirmar=confirm("¿Confirma que desea actualizar la información?");
+					 if(confirmar){	
 						
-					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario")+"&nombre="+nombre+"&apellidos="+apellidos+"&telefono="+telefono+"&docidentidad="+docidentidad+"&direccion="+direccion+"&fechaNacimiento="+fechanacimiento+"&correo="+correo+"&fechavencelicencia="+fechavencelicencia);
+					   MostrarDivCargando();
+						
+					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoVehiculo?idUsuario="+sessionStorage.getItem("idUsuario")+"&idVehiculo="+ sessionStorage.getItem("idVehiculo")+"&placa="+ placa+"&marca="+marca+"&linea="+linea+"&referencia="+referencia+"&tipo="+tipo+"&modelo="+ modelo + "&color=" + color + "&sistgasvehicular=" + sistgasvehicular + "&kilometrajeingreso=" + kilometrajeingreso + "&companiasegurotr=" + companiasegurotr);
 						$.ajax({
 							url: url,
 							type: 'GET',
@@ -286,7 +296,7 @@
 							}, 
 							timeout: 15000                          
 						});
-					
+					}
                 }
             }
         }

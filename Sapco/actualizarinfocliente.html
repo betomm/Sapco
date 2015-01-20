@@ -71,6 +71,11 @@
                 <div class="navigation-item">
                    <a href="infoclientes.html" class="nav-item home-icon">Mis datos personales<em class="selected-item"></em></a>
                 </div>	
+				
+				<div class="sidebar-decoration"></div>
+                <div class="navigation-item">
+                   <a href="infovehiculos.html" class="nav-item home-icon">Mis vehículos<em class="selected-item"></em></a>
+                </div>	
                 <div class="sidebar-decoration"></div>				
                 <div class="sidebar-breadcrumb">
                 </div>
@@ -190,9 +195,9 @@
 									       '<div class="formFieldWrap"><label class="field-title TelefonoField" for="TelefonoField">Teléfono:</label><input type="text" name="TelefonoField" value="'+field[x].Telefono+ '" class="contactField requiredField" id="TelefonoField" />'+
 										   '<div class="formFieldWrap"><label class="field-title CedulaField" for="CedulaField">Cédula:</label><input type="text" name="CedulaField" value="'+field[x].DocIdentidad+ '" class="contactField requiredField" id="CedulaField" />'+
 									       '<div class="formFieldWrap"><label class="field-title DireccionField" for="DireccionField">Dirección:</label><input type="text" name="DireccionField" value="'+field[x].Direccion+ '" class="contactField requiredField" id="DireccionField" />'+
-									       '<div class="formFieldWrap"><label class="field-title FechaNacimientoField" for="FechaNacimientoField">Fecha de Nacimiento:</label><input type="date" name="FechaNacimientoField" value="'+ convertirFecha(field[x].FechaNacimiento) + '" class="contactField requiredField" id="FechaNacimientoField" />'+
+									       '<div class="formFieldWrap"><label class="field-title FechaNacimientoField" for="FechaNacimientoField">Fecha de Nacimiento (YYYY-MM-DD):</label><input type="text" name="FechaNacimientoField" value="'+ convertirFecha(field[x].FechaNacimiento) + '" class="contactField requiredField" id="FechaNacimientoField" />'+
 									       '<div class="formFieldWrap"><label class="field-title CorreoField" for="CorreoField">Correo:</label><input type="email" name="CorreoField" value="'+field[x].Correo+ '" class="contactField requiredField" id="CorreoField" />'+
-									       '<div class="formFieldWrap"><label class="field-title FechaVenceLicenciaField" for="FechaVenceLicenciaField">Fecha de vencimiento de licencia: </label><input type="date" name="FechaVenceLicenciaField" value="'+convertirFecha(field[x].FechaVenceLicencia) + '" class="contactField requiredField" id="FechaVenceLicenciaField" />'+
+									       '<div class="formFieldWrap"><label class="field-title FechaVenceLicenciaField" for="FechaVenceLicenciaField">Fecha de vencimiento de licencia (YYYY-MM-DD): </label><input type="text" name="FechaVenceLicenciaField" value="'+convertirFecha(field[x].FechaVenceLicencia) + '" class="contactField requiredField" id="FechaVenceLicenciaField" />'+
 									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoClientesEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
                                 });
                                 
@@ -239,7 +244,7 @@
                     alert("Debes ingresar tus apellidos");
 					return;
                 }
-				var isDate = esFechaValida(esFechaValida);
+				var isDate = esFechaValida(fechanacimiento);
 				if(!isDate){
 				    alert("La fecha de nacimiento no es válida. El Formato debe ser YYYY-MM-DD");
 					return;
@@ -304,7 +309,7 @@
         }
 		
 		function esFechaValida(date) {
-                             return (new Date(date) !== "Invalid Date" && !isNaN(new Date(date)) ) ) ? true : false;
+                             return (new Date(date) !== "Invalid Date" && !isNaN(new Date(date)) )? true : false;
 		}
 		
 		function convertirFecha(oldfecha){
