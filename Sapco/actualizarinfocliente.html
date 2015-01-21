@@ -23,6 +23,9 @@
     <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
     <link href="styles/swipebox.css" rel="stylesheet" type="text/css">
     <link href="styles/colorbox.css" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" type="text/css" media="all" href="jsdatepicker/jsDatePick_ltr.min.css" />
+	
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="scripts/jqueryui.js"></script>
     <script type="text/javascript" src="scripts/owl.carousel.min.js"></script>
@@ -35,6 +38,9 @@
     <script type="text/javascript" src="scripts/framework.launcher.js"></script>
     <script type="text/javascript" src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
     <script type="text/javascript" src="scripts/bd.js"></script>
+	
+	<script type="text/javascript" src="jsdatepicker/jsDatePick.min.1.3.js"></script>
+	
 </head>
 <body>
     <div id="preloader">
@@ -159,7 +165,24 @@
         
     </div>
     <script type="text/javascript">
-       
+      function jsdatepickerload(){
+		new JsDatePick({
+			useMode:1,
+			target:"FechaNacimientoField",
+			dateFormat:"%Y-%M-%d"
+			/*selectedDate:{				This is an example of what the full configuration offers.
+				day:5,						For full documentation about these settings please see the full version of the code.
+				month:9,
+				year:2006
+			},
+			yearsRange:[1978,2030],
+			limitToToday:false,
+			cellColorScheme:"beige",
+			dateFormat:"%m-%d-%Y",
+			imgPath:"img/",
+			weekStartDay:1*/
+		});
+	}
         
         function closedSession(){
 		    sessionStorage.setItem("idUsuario", 0);
@@ -221,6 +244,8 @@
         }
 		
 		
+	
+	
 		
 		
 		function ActualizarInfoClientesEditable(codCliente) {
@@ -293,7 +318,7 @@
 								});
 							},
 							error: function (x, y, z) {
-								alert("No se encuentra una conexión 3G o Wifi activa.")
+								alert("No se encuentra una conexión 3G o Wifi activa o el servidor está ocupado")
 								OcultarDivCargando();
 							}, 
 							timeout: 15000                          
