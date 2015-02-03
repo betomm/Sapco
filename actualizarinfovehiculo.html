@@ -23,10 +23,6 @@
     <link href="styles/owl.theme.css" rel="stylesheet" type="text/css">
     <link href="styles/swipebox.css" rel="stylesheet" type="text/css">
     <link href="styles/colorbox.css" rel="stylesheet" type="text/css">
-	
-	<link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.css" />
-	
-	
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="scripts/jqueryui.js"></script>
     <script type="text/javascript" src="scripts/owl.carousel.min.js"></script>
@@ -39,9 +35,6 @@
     <script type="text/javascript" src="scripts/framework.launcher.js"></script>
     <script type="text/javascript" src="http://pajhome.org.uk/crypt/md5/2.2/md5-min.js"></script>
     <script type="text/javascript" src="scripts/bd.js"></script>
-	
-	<script type="text/javascript" src="jsDatePick.full.1.3.js"></script>
-	
 </head>
 <body>
     <div id="preloader">
@@ -72,7 +65,7 @@
                 <div class="sidebar-breadcrumb">NAVEGACIÓN</div>                
                 <div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                    <a href="index.html" class="nav-item home-icon">Nueva sesión<em class="selected-item"></em></a>	
+                    <a href="index.html" class="nav-item home-icon">Nueva Sesion<em class="selected-item"></em></a>
                 </div>
 				<div class="sidebar-decoration"></div>
                 <div class="navigation-item">
@@ -81,9 +74,10 @@
 				
 				<div class="sidebar-decoration"></div>
                 <div class="navigation-item">
-                   <a href="infovehiculos.html" class="nav-item home-icon">Mis vehículos<em class="selected-item"></em></a>
+                   <a href="infovehiculos.html" class="nav-item home-icon">Mis Vehículos<em class="selected-item"></em></a>
                 </div>	
-                <div class="sidebar-decoration"></div>				
+				
+				<div class="sidebar-decoration"></div>                               
                 <div class="sidebar-breadcrumb">
                 </div>
             </div>         
@@ -101,7 +95,7 @@
                 </div>
 				<div class="container no-bottom" style="text-align: center;">
                     <h3>
-                        ACTUALIZA TU INFORMACIÓN PERSONAL</h3>
+                        ACTUALIZA LA INFORMACIÓN DE TU VEHÍCULO</h3>
                 </div>
                 <div class="decoration">
                 </div>
@@ -111,8 +105,8 @@
                             Actualiza tu información regularmente</h4>
                         <a href="#" class="close-big-notification">x</a>
                         <p>
-                            Para un mejor servicio, recuerda actualizar tu<br/>
-							información personal de manera regular.<br/>
+                            Para un mejor servicio, recuerda actualizar la<br/>
+							información de  tu vehículo de manera regular.<br/>
 						</p>
                     </div>
                 </div>
@@ -135,20 +129,6 @@
                         </div>
 						<div id="info-cliente">
 						</div>
-						
-						<form name="form1" method="post" action="">
-	<select name="select" onchange="slctryole(this,this.form.select2)">
-		<option>- - Seleccionar - -</option>
-		<option value="herramientas">herramientas</option>
-		<option value="muebles">muebles</option>
-	</select>
-	<select name="select2" onchange="slctryole(this,this.form.select3)">
-		<option>- - - - - -</option>
-	</select>
-	<select name="select3">
-		<option>- - - - - -</option>
-	</select>
-</form>
 						
 						<br />
                         <!--
@@ -179,84 +159,9 @@
         </div>
         
     </div>
-	
-	
     <script type="text/javascript">
-      
-	    /************************************************
-Listas dependientes por Tunait!(5/1/04)
-Si quieres usar este script en tu sitio
-eres libre de hacerlo con la condición
-de que permanezcan intactas estas líneas,
-osea, los créditos.
-No autorizo a publicar y ofrecer el código
-en sitios de script sin previa autorización
-Si quieres publicarlo, por favor, contacta conmigo.
-http://javascript.tunait.com/
-tunait@yahoo.com
-*************************************************/
-function slctr(texto,valor){
-	this.texto = texto
-	this.valor = valor
-}
-
-var json = '{"getInfoValores":[{"Valor":"MARCAS","Clase":"AUDI","Paramtro":"TT"}, {"Valor":"MARCAS","Clase":"CHEVROLET","Paramtro":"CAPTIVA"}]}';
-obj = JSON.parse(json);
-alert(obj["getInfoValores"][1].Clase);
-
-var herramientas=new Array()
-	herramientas[0] = new slctr('- -Herramientas- -')
-	herramientas[1] = new slctr("Jardín",'jardin')
-	herramientas[2] = new slctr("fontanería",'fontaneria')
-
-
-var muebles=new Array()
-	muebles[0] = new slctr('- -Muebles- -')
-	muebles[1] = new slctr("Salón",'salon')
-	muebles[2] = new slctr("dormitorio",'dormitorio')
-
-//*******Nietos*******************
-var jardin = new Array()
-	jardin[0] = new slctr('- -Jardín- -')
-	jardin[1] = new slctr("podadora",null)
-	jardin[2] = new slctr("segadora" ,null)
-
-var fontaneria = new Array()
-	fontaneria[0] = new slctr('- -Fontanería- -')
-	fontaneria[1] = new slctr("llave inglesa",null)
-	fontaneria[2] = new slctr("llave fija",null)
-
-var salon = new Array()
-	salon[0] = new slctr('- -Salón- -')
-	salon[1] = new slctr("Mesa",null)
-	salon[2] = new slctr("silla" ,null)
-
-var dormitorio = new Array()
-	dormitorio[0] = new slctr('- -Dormitorio- -')
-	dormitorio[1] = new slctr("cama",null)
-	dormitorio[2] = new slctr("mesita" ,null)
-
-function slctryole(cual,donde){
-	if(cual.selectedIndex != 0){
-		donde.length=0
-		cual = eval(cual.value)
-		for(m=0;m<cual.length;m++){
-			var nuevaOpcion = new Option(cual[m].texto);
-			donde.options[m] = nuevaOpcion;
-			if(cual[m].valor != null){
-				donde.options[m].value = cual[m].valor
-			}
-			else{
-				donde.options[m].value = cual[m].texto
-			}
-		}
-	}
-}
+       
         
-		
-		
-		
-		
         function closedSession(){
 		    sessionStorage.setItem("idUsuario", 0);
 			location.href = "index.html";
@@ -266,16 +171,17 @@ function slctryole(cual,donde){
 		  if(sessionStorage.getItem("idUsuario") == 0){			  			 
 			  location.href = "index.html";			  
 		  }else{		        
-				InfoClientesEditable();
+				InfoVehiculosEditable();
 			}
         });
 		
-		var cliente = {Apellidos:"", Correo:"", Direccion:"", DocIdentidad:"", FechaNacimiento:"", FechaVenceLicencia:"", Nombre:"", Telefono:"", TipoDocId:""};
-        var clientes = [];
-		function InfoClientesEditable(){                    
+		var vehiculo = {Color:"", CompaniaSeguroTR:"", Estado:"", KilometrajeIngreso:"", Linea:"", Marca:"", Modelo:"", Placa:"", Referencia:"", SistGasVehicular:"", Tipo:"", Vehi_id:""};
+        var vehiculos = [];
+		function InfoVehiculosEditable(){                    
 				var texto="";
-				if(sessionStorage.getItem("idUsuario") != 0 ){	               
-                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario");
+				if(sessionStorage.getItem("idUsuario") != 0 ){
+                			
+                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoVehiculo?idUsuario="+sessionStorage.getItem("idUsuario");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -286,15 +192,21 @@ function slctryole(cual,donde){
                             $.each(data, function (i, field) {                                
                                 $.each(field, function (x, item) {									
 									
-									texto+='<div class="formFieldWrap"><label class="field-title NombreField" for="NombreField">Nombre: <span>(requerido)</span></label><input type="text" name="NombreField" value="'+field[x].Nombre+ '" class="contactField requiredField" id="NombreField" />'+
-								           '<div class="formFieldWrap"><label class="field-title ApellidosField" for="ApellidosField">Apellidos: <span>(requerido)</span></label><input type="text" name="ApellidosField" value="'+field[x].Apellidos+ '" class="contactField requiredField" id="ApellidosField" />'+
-									       '<div class="formFieldWrap"><label class="field-title TelefonoField" for="TelefonoField">Teléfono:</label><input type="text" name="TelefonoField" value="'+field[x].Telefono+ '" class="contactField requiredField" id="TelefonoField" />'+
-										   '<div class="formFieldWrap"><label class="field-title CedulaField" for="CedulaField">Cédula:</label><input type="text" name="CedulaField" value="'+field[x].DocIdentidad+ '" class="contactField requiredField" id="CedulaField" />'+
-									       '<div class="formFieldWrap"><label class="field-title DireccionField" for="DireccionField">Dirección:</label><input type="text" name="DireccionField" value="'+field[x].Direccion+ '" class="contactField requiredField" id="DireccionField" />'+
-									       '<div class="formFieldWrap"><label class="field-title FechaNacimientoField" for="FechaNacimientoField">Fecha de Nacimiento (YYYY-MM-DD):</label><input type="text" name="FechaNacimientoField" value="'+ convertirFecha(field[x].FechaNacimiento) + '" class="contactField requiredField" id="FechaNacimientoField" onfocus="jsdatepickerload();"/>'+
-									       '<div class="formFieldWrap"><label class="field-title CorreoField" for="CorreoField">Correo:</label><input type="email" name="CorreoField" value="'+field[x].Correo+ '" class="contactField requiredField" id="CorreoField" />'+
-									       '<div class="formFieldWrap"><label class="field-title FechaVenceLicenciaField" for="FechaVenceLicenciaField">Fecha de vencimiento de licencia (YYYY-MM-DD): </label><input type="text" name="FechaVenceLicenciaField" value="'+convertirFecha(field[x].FechaVenceLicencia) + '" class="contactField requiredField" id="FechaVenceLicenciaField" />'+
-									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoClientesEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+									var idVehiculo=sessionStorage.getItem("idVehiculo");
+									if(field[x].Vehi_id==idVehiculo){
+										texto+='<div class="formFieldWrap"><label class="field-title PlacaField" for="PlacaField">Placa: <span>(requerido)</span></label><input type="text" name="PlacaField" value="'+field[x].Placa+ '" class="contactField requiredField" id="PlacaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title MarcaField" for="MarcaField">Marca: </label><input type="text" name="MarcaField" value="'+field[x].Marca+ '" class="contactField requiredField" id="MarcaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title LineaField" for="LineaField">Linea:</label><input type="text" name="LineaField" value="'+field[x].Linea+ '" class="contactField requiredField" id="LineaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ModeloField" for="ModeloField">Modelo:</label><input type="text" name="ModeloField" value="'+field[x].Modelo+ '" class="contactField requiredField" id="ModeloField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ReferenciaField" for="ReferenciaField">Referencia:</label><input type="text" name="ReferenciaField" value="'+field[x].Referencia+ '" class="contactField requiredField" id="ReferenciaField" />'+
+											   '<div class="formFieldWrap"><label class="field-title TipoField" for="TipoField">Tipo de vehículo:</label><input type="text" name="TipoField" value="'+ field[x].Tipo + '" class="contactField requiredField" id="TipoField" />'+
+											   '<div class="formFieldWrap"><label class="field-title ColorField" for="ColorField">Color:</label><input type="text" name="ColorField" value="'+field[x].Color+ '" class="contactField requiredField" id="ColorField" />'+
+											   //'<div class="formFieldWrap"><label class="field-title EstadoField" for="EstadoField">Fecha de vencimiento de licencia: </label><input type="date" name="EstadoField" value="'+field[x].Estado '" class="contactField requiredField" id="EstadoField" />'+
+											   '<div class="formFieldWrap"><label class="field-title SistGasVehicularField" for="SistGasVehicularField">Sistema Gas Vehicular:</label><input type="text" name="SistGasVehicularField" value="'+field[x].SistGasVehicular+ '" class="contactField requiredField" id="SistGasVehicularField" />'+
+											   '<div class="formFieldWrap"><label class="field-title CompaniaSeguroTRField" for="CompaniaSeguroTRField">Compañia Seguro TR:</label><input type="text" name="CompaniaSeguroTRField" value="'+field[x].CompaniaSeguroTR+ '" class="contactField requiredField" id="CompaniaSeguroTRField" />'+
+											   '<div class="formFieldWrap"><label class="field-title KilometrajeIngresoField" for="KilometrajeIngresoField">Kilometraje Ingreso:</label><input type="text" name="KilometrajeIngresoField" value="'+field[x].KilometrajeIngreso+ '" class="contactField requiredField" id="KilometrajeIngresoField" />'+
+											   '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoVehiculoEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+									}
                                 });
                                 
                             });
@@ -306,62 +218,52 @@ function slctryole(cual,donde){
 							});
                         },
                         error: function (x, y, z) {
-                            //OcultarDivCargando();
+                            OcultarDivCargando();
                         }, 
                         timeout: 15000                          
-                    });
-					
+                    }); 
+				
+				
 				}else{
 				  alert("El codigo de usurio se ha perdido, para poder visualizar la información por favor loguearse de nuevo en el sistema");
 				}
         }
 		
 		
-	
-	
 		
 		
-		function ActualizarInfoClientesEditable(codCliente) {
+		function ActualizarInfoVehiculoEditable(codCliente) {
 
-            var nombre = $('#NombreField').val();
-            var apellidos = $('#ApellidosField').val();
-            var	telefono = $('#TelefonoField').val();
-			var	docidentidad= $('#CedulaField').val();	
-			var	direccion = $('#DireccionField').val();	
-			var	fechanacimiento = $('#FechaNacimientoField').val();	
-			var	correo = $('#CorreoField').val();	
-			var	fechavencelicencia = $('#FechaVenceLicenciaField').val();
-			if(nombre == ""){
-                alert("Debes ingresar tu nombre");
+            var placa = $('#PlacaField').val();
+            var marca = $('#MarcaField').val();
+            var	linea = $('#LineaField').val();
+			var	modelo= $('#ModeloField').val();	
+			var	referencia = $('#ReferenciaField').val();	
+			var	tipo = $('#TipoField').val();	
+			var	color = $('#ColorField').val();	
+			//var	estado = $('#EstadoField').val();
+			var	sistgasvehicular = $('#SistGasVehicularField').val();
+			var	companiasegurotr = $('#CompaniaSeguroTRField').val();	
+			var	kilometrajeingreso = $('#KilometrajeIngresoField').val();	
+			if(placa == ""){
+                alert("Debes ingresar la placa del vehiculo");
 				return;
             }
             else{
-                if(apellidos == ""){
-                    alert("Debes ingresar tus apellidos");
+                if(placa == ""){
+                    //alert("Debes ingresar una placa");
 					return;
-                }
-				var isDate = esFechaValida(fechanacimiento);
-				if(!isDate){
-				    alert("La fecha de nacimiento no es válida. El Formato debe ser YYYY-MM-DD");
-					return;
-				}
-				isDate=esFechaValida(fechavencelicencia);
-				if(!isDate){
-					alert("La fecha de vencimiento de licencia no es válida. El Formato debe ser YYYY-MM-DD");
-					return;
-				}
-				if(fechanacimiento =="" || fechavencelicencia==""){
-				      alert("Debes ingresar las fechas solicitadas");
-					  return;
+                
+				
 				
 				}else{
 					
-					 var confirmar=confirm("¿Confirma que desea actualizar la información?");
-					 if(confirmar){
-					   
+					var confirmar=confirm("¿Confirma que desea actualizar la información?");
+					 if(confirmar){	
+						
 					   MostrarDivCargando();
 						
-					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario")+"&nombre="+nombre+"&apellidos="+apellidos+"&telefono="+telefono+"&docidentidad="+docidentidad+"&direccion="+direccion+"&fechaNacimiento="+fechanacimiento+"&correo="+correo+"&fechavencelicencia="+fechavencelicencia);
+					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoVehiculo?idUsuario="+sessionStorage.getItem("idUsuario")+"&idVehiculo="+ sessionStorage.getItem("idVehiculo")+"&placa="+ placa+"&marca="+marca+"&linea="+linea+"&referencia="+referencia+"&tipo="+tipo+"&modelo="+ modelo + "&color=" + color + "&sistgasvehicular=" + sistgasvehicular + "&kilometrajeingreso=" + kilometrajeingreso + "&companiasegurotr=" + companiasegurotr);
 						$.ajax({
 							url: url,
 							type: 'GET',
@@ -373,15 +275,15 @@ function slctryole(cual,donde){
 
 									$.each(field, function (x, item) {
 
-										if(field[x].Codusua == 0){
+										if(field[x].Vehi_id == 0){
 											OcultarDivCargando();
 											alert(field[x].Mensaje);
 										}
 										else{
-											if(field[x].Codusua==sessionStorage.getItem("idUsuario")) {
+											if(field[x].Vehi_id==sessionStorage.getItem("idVehiculo")) {
 											OcultarDivCargando();
 											alert(field[x].Mensaje); 										
-											location.href = "infoclientes.html";
+											location.href = "infovehiculos.html";
 											}
 										}
 									});
@@ -389,7 +291,7 @@ function slctryole(cual,donde){
 								});
 							},
 							error: function (x, y, z) {
-								alert("No se encuentra una conexión 3G o Wifi activa o el servidor está ocupado")
+								alert("No se encuentra una conexión 3G o Wifi activa.")
 								OcultarDivCargando();
 							}, 
 							timeout: 15000                          
@@ -403,10 +305,6 @@ function slctryole(cual,donde){
         function errorGeneralBD(err){ 
             console.log(err);
         }
-		
-		function esFechaValida(date) {
-                             return (new Date(date) !== "Invalid Date" && !isNaN(new Date(date)) )? true : false;
-		}
 		
 		function convertirFecha(oldfecha){
 			
@@ -424,27 +322,6 @@ function slctryole(cual,donde){
 			return valores[2]+"-"+valores[0]+"-"+valores[1];
 		
 		}
-		
-		 function jsdatepickerload(){
-		    new JsDatePick({
-			useMode:2,
-			target:"FechaNacimientoField",
-			dateFormat:"%Y-%m-%d"
-			
-			
-			/*selectedDate:{				This is an example of what the full configuration offers.
-				day:5,						For full documentation about these settings please see the full version of the code.
-				month:9,
-				year:2006
-			},
-			yearsRange:[1978,2030],
-			limitToToday:false,
-			cellColorScheme:"beige",
-			dateFormat:"%m-%d-%Y",
-			imgPath:"img/",
-			weekStartDay:1*/
-		});
-	}
 
         
     </script>
