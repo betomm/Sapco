@@ -191,7 +191,7 @@
 										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Dias hasta proxima revisión: '+field[x].Diashastaproxrevision+'</li></ul></a>'+
 										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Kilometraje estimado para proima revisión: '+field[x].Kilomproxrevision+'</li></ul></a>'+
 										   '<a href="#" style="border-top: solid 1px rgba(0,0,0,0.1); padding-left: 20px !important; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: solid 1px rgba(0,0,0,0.1) !important;"><ul style="margin-bottom:0px;" class="icon-list"><li class="right-list">Fecha estimada para próxima revisión: '+convertirFecha(field[x].Fechaproxrevision)+'</li></ul></a>'+
-									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Editar Información del Servicio" onclick="actualizarInfoServicioMantenimiento('+localStorage.getItem("idUsuario")+','+field[x].Vehi_id+');" /><br /></div></div></div></div></div>';//+
+									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar Información del Servicio" onclick="actualizarInfoServicioMantenimiento('+localStorage.getItem("idUsuario")+','+field[x].Vehi_id+');" /><br /></div></div></div></div></div>';//+
 										   //'<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Ver Información de Servicios" onclick="consultarServicios('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
                                 });
                                 
@@ -217,8 +217,8 @@
 		 
 		
 		function actualizarInfoServicioMantenimiento(codCliente, idVehiculo){
-			//sessionStorage.setItem("idVehiculo", idVehiculo); 
-			//location.href = "actualizarinfoservicios.html";
+			sessionStorage.setItem("idVehiculo", idVehiculo); 
+			location.href = "actualizarinfoservicios.html";
 		}
 		
 		function convertirFecha(oldfecha){

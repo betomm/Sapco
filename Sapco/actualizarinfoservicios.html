@@ -101,7 +101,7 @@
                 </div>
 				<div class="container no-bottom" style="text-align: center;">
                     <h3>
-                        ACTUALIZA TU INFORMACIÓN PERSONAL</h3>
+                        ACTUALIZA LA INFORMACION DE TU SERVICIO</h3>
                 </div>
                 <div class="decoration">
                 </div>
@@ -112,7 +112,7 @@
                         <a href="#" class="close-big-notification">x</a>
                         <p>
                             Para un mejor servicio, recuerda actualizar tu<br/>
-							información personal de manera regular.<br/>
+							información de manera regular.<br/>
 						</p>
                     </div>
                 </div>
@@ -135,20 +135,6 @@
                         </div>
 						<div id="info-cliente">
 						</div>
-						
-						<form name="form1" method="post" action="">
-	<select name="select" onchange="slctryole(this,this.form.select2)">
-		<option>- - Seleccionar - -</option>
-		<option value="herramientas">herramientas</option>
-		<option value="muebles">muebles</option>
-	</select>
-	<select name="select2" onchange="slctryole(this,this.form.select3)">
-		<option>- - - - - -</option>
-	</select>
-	<select name="select3">
-		<option>- - - - - -</option>
-	</select>
-</form>
 						
 						<br />
                         <!--
@@ -182,82 +168,8 @@
 	
 	
     <script type="text/javascript">
-      
-	    /************************************************
-Listas dependientes por Tunait!(5/1/04)
-Si quieres usar este script en tu sitio
-eres libre de hacerlo con la condición
-de que permanezcan intactas estas líneas,
-osea, los créditos.
-No autorizo a publicar y ofrecer el código
-en sitios de script sin previa autorización
-Si quieres publicarlo, por favor, contacta conmigo.
-http://javascript.tunait.com/
-tunait@yahoo.com
-*************************************************/
-function slctr(texto,valor){
-	this.texto = texto
-	this.valor = valor
-}
 
-var json = '{"getInfoValores":[{"Valor":"MARCAS","Clase":"AUDI","Paramtro":"TT"}, {"Valor":"MARCAS","Clase":"CHEVROLET","Paramtro":"CAPTIVA"}]}';
-obj = JSON.parse(json);
-alert(obj["getInfoValores"][1].Clase);
-
-var herramientas=new Array()
-	herramientas[0] = new slctr('- -Herramientas- -')
-	herramientas[1] = new slctr("Jardín",'jardin')
-	herramientas[2] = new slctr("fontanería",'fontaneria')
-
-
-var muebles=new Array()
-	muebles[0] = new slctr('- -Muebles- -')
-	muebles[1] = new slctr("Salón",'salon')
-	muebles[2] = new slctr("dormitorio",'dormitorio')
-
-//*******Nietos*******************
-var jardin = new Array()
-	jardin[0] = new slctr('- -Jardín- -')
-	jardin[1] = new slctr("podadora",null)
-	jardin[2] = new slctr("segadora" ,null)
-
-var fontaneria = new Array()
-	fontaneria[0] = new slctr('- -Fontanería- -')
-	fontaneria[1] = new slctr("llave inglesa",null)
-	fontaneria[2] = new slctr("llave fija",null)
-
-var salon = new Array()
-	salon[0] = new slctr('- -Salón- -')
-	salon[1] = new slctr("Mesa",null)
-	salon[2] = new slctr("silla" ,null)
-
-var dormitorio = new Array()
-	dormitorio[0] = new slctr('- -Dormitorio- -')
-	dormitorio[1] = new slctr("cama",null)
-	dormitorio[2] = new slctr("mesita" ,null)
-
-function slctryole(cual,donde){
-	if(cual.selectedIndex != 0){
-		donde.length=0
-		cual = eval(cual.value)
-		for(m=0;m<cual.length;m++){
-			var nuevaOpcion = new Option(cual[m].texto);
-			donde.options[m] = nuevaOpcion;
-			if(cual[m].valor != null){
-				donde.options[m].value = cual[m].valor
-			}
-			else{
-				donde.options[m].value = cual[m].texto
-			}
-		}
-	}
-}
-        
-		
-		
-		
-		
-        function closedSession(){
+    function closedSession(){
 		    sessionStorage.setItem("idUsuario", 0);
 			location.href = "index.html";
 		} 
@@ -266,16 +178,17 @@ function slctryole(cual,donde){
 		  if(sessionStorage.getItem("idUsuario") == 0){			  			 
 			  location.href = "index.html";			  
 		  }else{		        
-				InfoClientesEditable();
+				InfoServiciosEditable();
 			}
         });
 		
-		var cliente = {Apellidos:"", Correo:"", Direccion:"", DocIdentidad:"", FechaNacimiento:"", FechaVenceLicencia:"", Nombre:"", Telefono:"", TipoDocId:""};
-        var clientes = [];
-		function InfoClientesEditable(){                    
+		var ServicioMant = {Diashastaproxrevision:"", Diaspromedio:"", Fechakilmutlimaact:"", Fechakilominicial:"", Fechaproxrevision:"", Kilometrajeinicial:"", Kilometrajeultimaact:"", Kilomproxrevision:"", Kilomproyectado:"", Promediokilomdiario:"", Servnombre:"", Vehiplaca:""};
+        var ServiciosMant = [];
+		
+		function InfoServiciosEditable(){                    
 				var texto="";
 				if(sessionStorage.getItem("idUsuario") != 0 ){	               
-                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario");
+                var url = "https://sgc.solucionesglobalessa.com:50004/Service1.svc/getInfoServicioMantenimiento?idUsuario="+sessionStorage.getItem("idUsuario")+"&idVehiculo="+sessionStorage.getItem("idVehiculo");
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -286,15 +199,9 @@ function slctryole(cual,donde){
                             $.each(data, function (i, field) {                                
                                 $.each(field, function (x, item) {									
 									
-									texto+='<div class="formFieldWrap"><label class="field-title NombreField" for="NombreField">Nombre: <span>(requerido)</span></label><input type="text" name="NombreField" value="'+field[x].Nombre+ '" class="contactField requiredField" id="NombreField" />'+
-								           '<div class="formFieldWrap"><label class="field-title ApellidosField" for="ApellidosField">Apellidos: <span>(requerido)</span></label><input type="text" name="ApellidosField" value="'+field[x].Apellidos+ '" class="contactField requiredField" id="ApellidosField" />'+
-									       '<div class="formFieldWrap"><label class="field-title TelefonoField" for="TelefonoField">Teléfono:</label><input type="text" name="TelefonoField" value="'+field[x].Telefono+ '" class="contactField requiredField" id="TelefonoField" />'+
-										   '<div class="formFieldWrap"><label class="field-title CedulaField" for="CedulaField">Cédula:</label><input type="text" name="CedulaField" value="'+field[x].DocIdentidad+ '" class="contactField requiredField" id="CedulaField" />'+
-									       '<div class="formFieldWrap"><label class="field-title DireccionField" for="DireccionField">Dirección:</label><input type="text" name="DireccionField" value="'+field[x].Direccion+ '" class="contactField requiredField" id="DireccionField" />'+
-									       '<div class="formFieldWrap"><label class="field-title FechaNacimientoField" for="FechaNacimientoField">Fecha de Nacimiento (YYYY-MM-DD):</label><input type="text" name="FechaNacimientoField" value="'+ convertirFecha(field[x].FechaNacimiento) + '" class="contactField requiredField" id="FechaNacimientoField" onfocus="jsdatepickerload();"/>'+
-									       '<div class="formFieldWrap"><label class="field-title CorreoField" for="CorreoField">Correo:</label><input type="email" name="CorreoField" value="'+field[x].Correo+ '" class="contactField requiredField" id="CorreoField" />'+
-									       '<div class="formFieldWrap"><label class="field-title FechaVenceLicenciaField" for="FechaVenceLicenciaField">Fecha de vencimiento de licencia (YYYY-MM-DD): </label><input type="text" name="FechaVenceLicenciaField" value="'+convertirFecha(field[x].FechaVenceLicencia) + '" class="contactField requiredField" id="FechaVenceLicenciaField" />'+
-									       '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoClientesEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
+									texto+='<div class="toggle-2"><a href="#" class="deploy-toggle-2">'+field[x].Servnombre+' '+field[x].Vehiplaca +'</a><div class="toggle-content"><div class="one-half-responsive "><div class="submenu-navigation"><div class="submenu-nav-items" style="overflow: hidden; display: block;"></div>'+
+									       '<div class="formFieldWrap"><label class="field-title KilometrajeultimaactField" for="KilometrajeultimaactField"> ¿Cuál es tu kilometraje el día de hoy? <span>(requerido)</span></label><input type="text" name="Kilometrajeultimaact" value="'+field[x].Kilometrajeultimaact+ '" class="contactField requiredField" id="Kilometrajeultimaact" />'+
+								           '<br /><input type="button" class="buttonWrap button button-dark contactSubmitButton" id="contactSubmitButton" value="Actualizar" onclick="ActualizarInfoServMantEditable('+localStorage.getItem("idUsuario")+');" /><br /></div></div></div></div></div>';
                                 });
                                 
                             });
@@ -321,47 +228,23 @@ function slctryole(cual,donde){
 	
 		
 		
-		function ActualizarInfoClientesEditable(codCliente) {
+		function ActualizarInfoServMantEditable(codCliente) {
 
-            var nombre = $('#NombreField').val();
-            var apellidos = $('#ApellidosField').val();
-            var	telefono = $('#TelefonoField').val();
-			var	docidentidad= $('#CedulaField').val();	
-			var	direccion = $('#DireccionField').val();	
-			var	fechanacimiento = $('#FechaNacimientoField').val();	
-			var	correo = $('#CorreoField').val();	
-			var	fechavencelicencia = $('#FechaVenceLicenciaField').val();
-			if(nombre == ""){
-                alert("Debes ingresar tu nombre");
+            var nuevoKilometraje = $('#Kilometrajeultimaact').val();
+            
+			if(nuevoKilometraje == ""){
+                alert("Debes ingresar un nuevo kilometraje");
 				return;
             }
             else{
-                if(apellidos == ""){
-                    alert("Debes ingresar tus apellidos");
-					return;
-                }
-				var isDate = esFechaValida(fechanacimiento);
-				if(!isDate){
-				    alert("La fecha de nacimiento no es válida. El Formato debe ser YYYY-MM-DD");
-					return;
-				}
-				isDate=esFechaValida(fechavencelicencia);
-				if(!isDate){
-					alert("La fecha de vencimiento de licencia no es válida. El Formato debe ser YYYY-MM-DD");
-					return;
-				}
-				if(fechanacimiento =="" || fechavencelicencia==""){
-				      alert("Debes ingresar las fechas solicitadas");
-					  return;
-				
-				}else{
 					
 					 var confirmar=confirm("¿Confirma que desea actualizar la información?");
+					 
 					 if(confirmar){
 					   
 					   MostrarDivCargando();
 						
-					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoUsuario?idUsuario="+sessionStorage.getItem("idUsuario")+"&nombre="+nombre+"&apellidos="+apellidos+"&telefono="+telefono+"&docidentidad="+docidentidad+"&direccion="+direccion+"&fechaNacimiento="+fechanacimiento+"&correo="+correo+"&fechavencelicencia="+fechavencelicencia);
+					   var url = encodeURI("https://sgc.solucionesglobalessa.com:50004/Service1.svc/setInfoServMantenimiento?idUsuario="+sessionStorage.getItem("idUsuario")+"&idVehiculo="+sessionStorage.getItem("idVehiculo")+"&nuevoKilometraje=" +nuevoKilometraje);
 						$.ajax({
 							url: url,
 							type: 'GET',
@@ -395,8 +278,8 @@ function slctryole(cual,donde){
 							timeout: 15000                          
 						});
 					}
-                }
             }
+            
         }
 
         
